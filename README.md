@@ -15,4 +15,4 @@ TODO
 
 ## Authors
 
-* Masafumi Yokoyama <yokoyama at clear-code. com>
+* Masafumi Yokoyama `<yokoyama@clear-code.com>`
