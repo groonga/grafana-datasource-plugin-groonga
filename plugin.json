@@ -6,5 +6,9 @@
   "serviceName": "GroongaDatasource",
 
   "module": "app/plugins/datasource/groonga/datasource",
-  "metrics": true
+  "metrics": true,
+
+  "partials": {
+    "config": "app/plugins/datasource/groonga/partials/config.html"
+  }
 }
