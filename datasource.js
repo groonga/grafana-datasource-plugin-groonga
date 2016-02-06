@@ -45,7 +45,7 @@ function (angular) {
         url: this.datasource.url + '/d/select?' + params(selectOptions)
       };
       return backendSrv.datasourceRequest(requestOptions).then(function(result) {
-        var data = []
+        var data = [];
         var seriesSet = {};
         var drilldown = result.data[1][1].code;
         var i;
