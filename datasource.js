@@ -65,7 +65,7 @@ function (angular) {
           }
           datapoints = series.datapoints;
           datapoints.push([nCodes, timestamp * 1000]);
-        };
+        }
         return {data: data};
       });
     };
