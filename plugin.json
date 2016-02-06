@@ -1,0 +1,10 @@
+{
+  "pluginType": "datasource",
+  "name": "Groonga",
+
+  "type": "groonga",
+  "serviceName": "GroongaDatasource",
+
+  "module": "app/plugins/datasource/groonga/datasource",
+  "metrics": true
+}
