@@ -70,6 +70,6 @@ function (angular) {
       });
     };
 
-     return GroongaDatasource;
+    return GroongaDatasource;
   });
 });
