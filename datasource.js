@@ -1,5 +1,7 @@
 define([
-  'angular'
+  'angular',
+  './directives',
+  './query_ctrl'
 ],
 function (angular) {
   'use strict';
