@@ -13,6 +13,12 @@ function (angular) {
       $scope.target.table = 'Logs';
     };
 
+    $scope.update = function () {
+      console.log('update');
+      $scope.target.table = $scope.table;
+      $scope.get_data();
+    }
+
     $scope.init();
 
   });
