@@ -33,8 +33,9 @@ function (angular) {
     };
 
     GroongaDatasource.prototype.query = function(options) {
+      var target = options.targets[0];
       var selectOptions = {
-        table: 'Logs',
+        table: target.table,
         filter: 'between(timestamp, ' +
                          options.range.from.unix() + ', "include", ' +
                          options.range.to.unix() + ', "include")',
