@@ -7,7 +7,7 @@
     <li>
       <select class="tight-form-input input-medium"
               ng-model="table"
-              ng-change="update()">
+              ng-change="updateTable()">
         <option ng-repeat="name in availableTables"
                 value="{{name}}">
           {{name}}
@@ -19,12 +19,14 @@
       COLUMN
     </li>
     <li>
-      <input type="text"
-             class="tight-form-input input-medium"
-             ng-model="column"
-             ng-model-onblur
-             ng-change="update()"
-             spellcheck='false'>
+      <select class="tight-form-input input-medium"
+              ng-model="column"
+              ng-change="updateColumn()">
+        <option ng-repeat="name in availableColumns"
+                value="{{name}}">
+          {{name}}
+        </option>
+      </select>
     </li>
   </ul>
   <div class="clearfix"></div>
