@@ -16,6 +16,7 @@ function (angular) {
     $scope.update = function () {
       console.log('update');
       $scope.target.table = $scope.table;
+      $scope.target.column = $scope.column;
       $scope.get_data();
     }
 

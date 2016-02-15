@@ -13,6 +13,18 @@
              spellcheck='false'
              placeholder="Logs">
     </li>
+    <li class="tight-form-item query-keyword"
+        style="width: 75px">
+      COLUMN
+    </li>
+    <li>
+      <input type="text"
+             class="tight-form-input input-medium"
+             ng-model="column"
+             ng-model-onblur
+             ng-change="update()"
+             spellcheck='false'>
+    </li>
   </ul>
   <div class="clearfix"></div>
 </div>
