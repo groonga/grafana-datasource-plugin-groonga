@@ -5,13 +5,14 @@
       TABLE
     </li>
     <li>
-      <input type="text"
-             class="tight-form-input input-medium"
-             ng-model="table"
-             ng-model-onblur
-             ng-change="update()"
-             spellcheck='false'
-             placeholder="Logs">
+      <select class="tight-form-input input-medium"
+              ng-model="table"
+              ng-change="update()">
+        <option ng-repeat="name in availableTables"
+                value="{{name}}">
+          {{name}}
+        </option>
+      </select>
     </li>
     <li class="tight-form-item query-keyword"
         style="width: 75px">
