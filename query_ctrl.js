@@ -6,18 +6,15 @@ function (angular) {
 
   var module = angular.module('grafana.controllers');
 
-  module.controller('GroongaQueryCtrl', function ($scope, backendSrv, $httpParamSerializerJQLike) {
-    function params(data) {
-      return $httpParamSerializerJQLike(data);
-    }
-
+  module.controller('GroongaQueryCtrl', function ($scope, backendSrv) {
     $scope.init = function () {
       var selectOptions = {};
       var options = {
         url: $scope.datasource.datasource.url + '/d/schema'
       };
       return backendSrv.datasourceRequest(options).then(function(response) {
-        var tables = response.data[1].tables;
+        $scope.schema = response.data[1];
+        var tables = $scope.schema.tables;
         angular.forEach(tables, function(table, tableName) {
           var hasTimeColumn = false;
           var columnName;
@@ -36,20 +33,9 @@ function (angular) {
 
     $scope.updateTable = function () {
       $scope.target.table = $scope.table;
-      var columnListOptions = {
-        table: $scope.table
-      }
-      var options = {
-        url: $scope.datasource.datasource.url + '/d/column_list?' + params(columnListOptions)
-      };
-      return backendSrv.datasourceRequest(options).then(function(response) {
-        var columns = response.data[1];
-        angular.forEach(columns, function(column) {
-          var columnName = column[1];
-          if (angular.isString(columnName)) {
+      var columns = $scope.schema.tables[$scope.table].columns;
+      angular.forEach(columns, function(_, columnName) {
             $scope.availableColumns.push(columnName);
-          }
-        });
       });
     }
 
