@@ -35,7 +35,7 @@ function (angular) {
       $scope.target.table = $scope.table;
       var columns = $scope.schema.tables[$scope.table].columns;
       angular.forEach(columns, function(_, columnName) {
-            $scope.availableColumns.push(columnName);
+        $scope.availableColumns.push(columnName);
       });
     }
 
