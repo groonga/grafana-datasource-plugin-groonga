@@ -6,6 +6,7 @@
     </li>
     <li>
       <select class="tight-form-input input-medium"
+              ng-disabled="target.refId && target.refId !== 'A'"
               ng-model="table"
               ng-change="updateTable()">
         <option ng-repeat="name in availableTables"
@@ -20,6 +21,7 @@
     </li>
     <li>
       <select class="tight-form-input input-medium"
+              ng-disabled="target.refId && target.refId !== 'A'"
               ng-model="column"
               ng-change="updateColumn()">
         <option ng-repeat="name in availableColumns"
