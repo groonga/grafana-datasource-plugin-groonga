@@ -35,10 +35,16 @@ function (angular) {
     GroongaDatasource.prototype.query = function(options) {
       var target = options.targets[0];
       var column = target.column;
+      var timeColumn;
+      if (target.timeColumns.indexOf('timestamp') >= 0) {
+        timeColumn = 'timestamp';
+      } else {
+        timeColumn = target.timeColumns[0];
+      }
       var selectOptions = {
         table: target.table,
-        output_columns: 'timestamp, ' + target.column,
-        filter: 'between(timestamp, ' +
+        output_columns: timeColumn + ', ' + target.column,
+        filter: 'between(' + timeColumn + ', ' +
                          options.range.from.unix() + ', "include", ' +
                          options.range.to.unix() + ', "include")',
         limit: -1

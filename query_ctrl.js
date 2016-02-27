@@ -20,8 +20,12 @@ function (angular) {
           var columnName;
           for (columnName in table.columns) {
             if (table.columns[columnName].value_type.name === 'Time') {
+
               hasTimeColumn = true;
-              break;
+              if (!angular.isDefined($scope.timeColumns[tableName])) {
+                $scope.timeColumns[tableName] = [];
+              }
+              $scope.timeColumns[tableName].push(columnName);
             }
           }
           if (hasTimeColumn) {
@@ -33,6 +37,7 @@ function (angular) {
 
     $scope.updateTable = function () {
       $scope.target.table = $scope.table;
+      $scope.target.timeColumns = $scope.timeColumns[$scope.table];
       var columns = $scope.schema.tables[$scope.table].columns;
       angular.forEach(columns, function(column, columnName) {
         switch (column.value_type.name) {
@@ -58,6 +63,7 @@ function (angular) {
 
     $scope.availableTables = [];
     $scope.availableColumns = [];
+    $scope.timeColumns = {};
     $scope.init();
 
   });
