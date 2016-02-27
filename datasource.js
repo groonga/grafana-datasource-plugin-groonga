@@ -35,39 +35,37 @@ function (angular) {
     GroongaDatasource.prototype.query = function(options) {
       var target = options.targets[0];
       var column = target.column;
-      var selectOptions = {};
-      selectOptions.table = target.table,
-      selectOptions.filter = 'between(timestamp, ' +
-                             options.range.from.unix() + ', "include", ' +
-                             options.range.to.unix() + ', "include")';
-      selectOptions['drilldown[' + column + '].keys'] = 'timestamp, ' + column;
-      selectOptions['drilldown[' + column + '].output_columns'] = '_value.timestamp, _value.' + column + ', _nsubrecs';
-      selectOptions['drilldown[' + column + '].sortby'] = '_value.timestamp';
-      selectOptions['drilldown[' + column + '].limit'] = -1;
+      var selectOptions = {
+        table: target.table,
+        output_columns: 'timestamp, ' + target.column,
+        filter: 'between(timestamp, ' +
+                         options.range.from.unix() + ', "include", ' +
+                         options.range.to.unix() + ', "include")',
+        limit: -1
+      };
       var requestOptions = {
         url: this.datasource.url + '/d/select?' + params(selectOptions)
       };
       return backendSrv.datasourceRequest(requestOptions).then(function(result) {
         var data = [];
         var seriesSet = {};
-        var drilldown = result.data[1][1][column];
+        var select = result.data[1][0];
         var i;
-        for (i = 2; i < drilldown.length; i++) {
-          var record = drilldown[i];
+        for (i = 2; i < select.length; i++) {
+          var record = select[i];
           var timestamp = record[0];
           var value = record[1];
-          var nValues = record[2];
-          var series = seriesSet[value];
+          var series = seriesSet[column];
           var datapoints;
           if (!series) {
-            series = seriesSet[value] = {
-              target: value,
+            series = seriesSet[column] = {
+              target: column,
               datapoints: []
             };
             data.push(series);
           }
           datapoints = series.datapoints;
-          datapoints.push([nValues, timestamp * 1000]);
+          datapoints.push([value, timestamp * 1000]);
         }
         return {data: data};
       });
