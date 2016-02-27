@@ -4,6 +4,30 @@
 
 ![grafana-plugin-datasource-groonga-screenshot](https://cloud.githubusercontent.com/assets/386687/13373741/41058f8e-ddb3-11e5-83fd-d904f810f8fe.png)
 
+## Installation
+
+Notice: You need to install Grafana. See [Installation - Grafana Documentation](http://docs.grafana.org/installation/).
+
+1. Download archive
+2. Copy plugins directory
+3. Restart grafana-server
+
+### 1. Download archive
+
+https://github.com/groonga/grafana-datasource-plugin-groonga/releases
+
+### 2. Copy plugins directory
+
+Copy the files to `/usr/share/grafana/public/app/plugins/datasource/groonga`.
+
+### 3. Restart grafana-server
+
+Restart `grafana-server`. For example (Systemd):
+
+    $ sudo systemctl restart grafana-server
+
+Now, Groonga data source is avalilable.
+
 ## Usage
 
 1. Start Groonga HTTP server
