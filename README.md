@@ -9,14 +9,14 @@
 Notice: You need to install Grafana. See [Installation - Grafana Documentation](http://docs.grafana.org/installation/).
 
 1. Download archive
-2. Copy plugins directory
+2. Copy to plugins directory
 3. Restart grafana-server
 
 ### 1. Download archive
 
 https://github.com/groonga/grafana-datasource-plugin-groonga/releases
 
-### 2. Copy plugins directory
+### 2. Copy to plugins directory
 
 Copy the files to `/usr/share/grafana/public/app/plugins/datasource/groonga`.
 
