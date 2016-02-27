@@ -34,8 +34,20 @@ function (angular) {
     $scope.updateTable = function () {
       $scope.target.table = $scope.table;
       var columns = $scope.schema.tables[$scope.table].columns;
-      angular.forEach(columns, function(_, columnName) {
-        $scope.availableColumns.push(columnName);
+      angular.forEach(columns, function(column, columnName) {
+        switch (column.value_type.name) {
+          case 'Int8':
+          case 'Int16':
+          case 'Int32':
+          case 'Int64':
+          case 'UInt8':
+          case 'UInt16':
+          case 'UInt32':
+          case 'UInt64':
+          case 'Float':
+            $scope.availableColumns.push(columnName);
+            break;
+        }
       });
     }
 
