@@ -22,8 +22,8 @@ Clone git repository or download archive into temporary directory.
 
 #### Archive
 
-    $ wget https://github.com/groonga/grafana-datasource-plugin-groonga/archive/v0.1.0.tar.gz
-    $ tar xzvf v0.1.0.tar.gz
+    $ wget https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/v0.1.0/grafana-datasource-plugin-groonga-0.1.0.tar.gz
+    $ tar xzvf grafana-datasource-plugin-groonga-0.1.0.tar.gz
 
 ### 2. Copy to plugins directory
 
