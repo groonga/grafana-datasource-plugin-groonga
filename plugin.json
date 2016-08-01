@@ -1,12 +1,11 @@
 {
-  "pluginType": "datasource",
+  "type": "datasource",
   "name": "Groonga",
-
-  "type": "groonga",
-  "serviceName": "GroongaDatasource",
+  "id": "groonga",
 
   "module": "app/plugins/datasource/groonga/datasource",
   "metrics": true,
+  "annotations": false,
 
   "partials": {
     "config": "app/plugins/datasource/groonga/partials/config.html"
