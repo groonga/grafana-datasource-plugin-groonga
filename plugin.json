@@ -9,5 +9,20 @@
 
   "partials": {
     "config": "app/plugins/datasource/groonga/partials/config.html"
+  },
+
+  "info": {
+    "description": "Groonga datasource for Grafana",
+    "author": {
+      "name": "Masafumi Yokoyama",
+      "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
+    },
+    "logos": {
+      "small": "img/groonga-icon.svg",
+      "large": "img/groonga-icon-full-size.svg"
+    },
+    "keywords": ["Groonga", "datasource"],
+    "version": "0.1.0",
+    "updated": "2016-02-28"
   }
 }
