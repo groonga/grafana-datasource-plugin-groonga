@@ -25,7 +25,7 @@ jobs:
         with:
           path: |
             **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          key: ${{ matrix.runs-on }}-${{ hashFiles('yarn.lock') }}
       - name: Install
         run: |
           yarnpkg install --frozen-lockfile
@@ -40,5 +40,5 @@ jobs:
           ./node_modules/.bin/grafana-toolkit plugin:ci-package
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ runner.os }}-${{ matrix.node-version }}
+          name: ${{ matrix.runs-on }}-${{ matrix.node-version }}
           path: ci
