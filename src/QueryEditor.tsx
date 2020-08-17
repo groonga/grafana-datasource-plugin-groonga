@@ -15,6 +15,21 @@ const aggTypes: Array<SelectableValue<string>> = [
   { label: 'avg', value: 'avg' },
 ];
 
+const intervalTypes: Array<SelectableValue<string>> = [
+  { label: 'none', value: '' },
+  { label: '10s', value: '10s' },
+  { label: '30s', value: '30s' },
+  { label: '1m', value: '1m' },
+  { label: '5m', value: '5m' },
+  { label: '15m', value: '15m' },
+  { label: '30m', value: '30m' },
+  { label: '1h', value: '1h' },
+  { label: '2h', value: '2h' },
+  { label: '6h', value: '6h' },
+  { label: '1d', value: '1d' },
+  { label: '1w', value: '1w' },
+];
+
 type Props = QueryEditorProps<DataSource, GroongaQuery, GroongaOptions>;
 
 export class QueryEditor extends PureComponent<Props> {
@@ -29,9 +44,10 @@ export class QueryEditor extends PureComponent<Props> {
       filter: '',
       sortby: '',
       limit: 1000,
-      aggregate: '',
+      aggregateType: '',
       aggregateKeyStr: '',
       aggregateTarget: '',
+      aggregateInterval: '',
     };
     const query = Object.assign({}, defaultQuery, props.query);
     this.query = query;
@@ -41,9 +57,10 @@ export class QueryEditor extends PureComponent<Props> {
       table: query.table,
       column: query.column,
       filter: query.filter,
-      aggregate: query.aggregate,
+      aggregateType: query.aggregateType,
       aggregateKeyStr: query.aggregateKeyStr,
       aggregateTarget: query.aggregateTarget,
+      aggregateInterval: query.aggregateInterval,
       limit: query.limit,
     };
   }
@@ -87,7 +104,7 @@ export class QueryEditor extends PureComponent<Props> {
   onAggregateOptionChange = (option: SelectableValue<string>) => {
     const { query } = this;
     const value = option.value ? option.value : '';
-    query.aggregate = value;
+    query.aggregateType = value;
     this.setState({ value }, this.onRunQuery);
   };
   onAggregateTargetTextChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -95,16 +112,17 @@ export class QueryEditor extends PureComponent<Props> {
     this.query.aggregateTarget = value;
     this.setState({ value }, this.onRunQuery);
   };
-  onAggregateIntervalChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value, 10);
-    this.query.aggregateInterval = value;
+  onAggregateIntervalChange = (option: SelectableValue<string>) => {
+    const { query } = this;
+    const value = option.value ? option.value : '';
+    query.aggregateInterval = value;
     this.setState({ value }, this.onRunQuery);
   };
 
   render() {
     //const query = defaults(this.props.query, defaultQuery);
     const query = this.props.query;
-    const { table, queryText, filter, sortby, limit, aggregateKeyStr, aggregateTarget, aggregateInterval } = query;
+    const { table, queryText, filter, sortby, limit, aggregateKeyStr, aggregateTarget } = query;
 
     return (
       <>
@@ -190,7 +208,7 @@ export class QueryEditor extends PureComponent<Props> {
                     value={aggTypes.find(
                       (option: any) =>
                         option.value ===
-                        (this.props.query.aggregate === undefined ? 'none' : this.props.query.aggregate)
+                        (this.props.query.aggregateType === undefined ? 'none' : this.props.query.aggregateType)
                     )}
                     onChange={this.onAggregateOptionChange}
                   />
@@ -205,12 +223,20 @@ export class QueryEditor extends PureComponent<Props> {
                 tooltip={<>Aggregate target column. ex : _id</>}
               />
               <FormField
-                labelWidth={8}
-                inputWidth={4}
-                value={aggregateInterval || ''}
-                onChange={this.onAggregateIntervalChange}
-                label="Interval(sec)"
-                tooltip={<>Aggregate target interval. ex : 3600</>}
+                labelWidth={4}
+                inputWidth={10}
+                label="Interval"
+                inputEl={
+                  <Select
+                    options={intervalTypes}
+                    value={intervalTypes.find(
+                      (option: any) =>
+                        option.value ===
+                        (this.props.query.aggregateInterval === undefined ? 'none' : this.props.query.aggregateInterval)
+                    )}
+                    onChange={this.onAggregateIntervalChange}
+                  />
+                }
               />
             </div>
           </div>

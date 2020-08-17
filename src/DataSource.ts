@@ -82,7 +82,7 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
         //var dataNum = select[0];
         //var schema = select[1];
 
-        if (queryDef.isGraphAggregateType(selectParams.aggs[0].aggString)) {
+        if (queryDef.isGraphAggregateType(selectParams.aggs[0].aggType)) {
           return this.createGraphResponse(selects, selectParams);
         } else {
           return this.createTableResponse(selects, selectParams);
@@ -400,7 +400,7 @@ tableData_Response_Format = [
 }
 ];
 
-// Groonga response data : From Groonga 
+// Groonga response data : From Groonga
 // データ部分:datasourceRequestの戻り値resultのresult.data
 
 // 非集約時

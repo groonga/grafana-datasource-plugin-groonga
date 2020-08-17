@@ -1,4 +1,5 @@
-import { DataQuery, DataSourceJsonData, SelectableValue } from '@grafana/data';
+//import { DataQuery, DataSourceJsonData, SelectableValue } from '@grafana/data';
+import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
 export interface GroongaQuery extends DataQuery {
   queryText?: string;
@@ -9,10 +10,9 @@ export interface GroongaQuery extends DataQuery {
   sortby: string;
   limit: number;
   aggregateKeyStr: string;
-  aggregate: string;
+  aggregateType: string;
   aggregateTarget: string;
-  aggregateInterval: number;
-  aggregateOption: SelectableValue<string>;
+  aggregateInterval: string;
 }
 
 export interface GroongaAggregation {

@@ -5,10 +5,10 @@ const timekey_alias = 'AGGTIME';
 
 interface AggregateParam {
   refId: string;
-  aggString: string;
+  aggType: string;
   aggKeyStr: string;
   aggTarget: string;
-  aggInterval: number; // aggregate span(sec)
+  aggInterval: string;
 }
 
 export class SelectParameters {
@@ -25,12 +25,6 @@ export class SelectParameters {
   intervalMs: number;
 
   aggs: AggregateParam[];
-  /*refId: string;
-  aggString: string;
-  aggKeyStr: string;
-  aggTarget: string;
-  aggInterval: number; // aggregate span(sec)
-  */
 
   constructor(
     _timeField: string,
@@ -47,22 +41,15 @@ export class SelectParameters {
     this.filter = _groongaQuerys[0].filter;
     this.sortby = _groongaQuerys[0].sortby;
     this.limit = _groongaQuerys[0].limit;
-    /*
-    this.refId = _groongaQuerys[0].refId;
-    this.aggString = _groongaQuerys[0].aggregate;
-    this.aggKeyStr = _groongaQuerys[0].aggregateKeyStr;
-    this.aggTarget = _groongaQuerys[0].aggregateTarget;
-    this.aggInterval = _groongaQuerys[0].aggregateInterval === undefined ? 0 : _groongaQuerys[0].aggregateInterval;
-    */
 
     this.aggs = [];
     _groongaQuerys.forEach((_agg: GroongaQuery) => {
       let agg: AggregateParam = {
         refId: _agg.refId,
-        aggString: _agg.aggregate,
+        aggType: _agg.aggregateType,
         aggKeyStr: _agg.aggregateKeyStr,
         aggTarget: _agg.aggregateTarget,
-        aggInterval: _agg.aggregateInterval === undefined ? 0 : _agg.aggregateInterval,
+        aggInterval: _agg.aggregateInterval === undefined ? '' : _agg.aggregateInterval,
       };
       this.aggs.push(agg);
     });
@@ -71,7 +58,7 @@ export class SelectParameters {
 
   private isEnableAggregate(_index: number) {
     let index = _index < 0 || _index >= this.aggs.length ? 0 : _index;
-    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggString);
+    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggType);
     return this.isExist(this.aggs[index].aggKeyStr) && aggQuery.length > 0;
   }
 
@@ -85,7 +72,7 @@ export class SelectParameters {
 
   isAggregate(_index: number): boolean {
     let index = _index < 0 || _index >= this.aggs.length ? 0 : _index;
-    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggString);
+    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggType);
     return this.isExist(this.aggs[index].aggKeyStr) && aggQuery.length > 0;
   }
 
@@ -98,13 +85,10 @@ export class SelectParameters {
   }
 
   buildQueryParameters(): string {
-    const limitNumDefault = 10; // defalut
-    //let aggQuery = queryDefs.getAggTypesQueryStr(this.aggString);
-
-    //let bEnableAggregate = this.isExist(this.aggKeyStr) && aggQuery.length > 0;
+    const limitNumDefault = 10; // default
     let bEnableAggregate = this.isEnableAggregate(0);
 
-    // create groonga RESTApi parameter
+    // create groonga api parameter
     let serializedOptionStr = '';
     // table : table name
     serializedOptionStr += this.getQueryStr(false, 'table', this.table);
@@ -141,25 +125,59 @@ export class SelectParameters {
       });
 
       //span agg
-      //if (false) {
-      let interval = this.aggs[0].aggInterval > 0 ? this.aggs[0].aggInterval : this.intervalMs * 60;
-      //let interval = selectOptions.aggInterval;
-      if (interval > 0) {
-        // columns[T].stage,type,value
+      if (this.aggs[0].aggInterval !== undefined && this.aggs[0].aggInterval.length > 0) {
         serializedOptionStr += this.getColumnsStr(true, 'stage', 'initial');
-        serializedOptionStr += this.getColumnsStr(true, 'type', 'UInt64');
-        let unixtimeKeyStr = 'number_classify(' + this.timeField + '_unixtime,' + interval + ')';
-        serializedOptionStr += this.getColumnsStr(true, 'value', unixtimeKeyStr);
+        serializedOptionStr += this.getColumnsStr(true, 'type', 'Time');
+        let timeKeyStr = this.getTimeClassifyStr(this.aggs[0].aggInterval);
+        serializedOptionStr += this.getColumnsStr(true, 'value', timeKeyStr);
       }
     }
     return serializedOptionStr;
   }
 
+  private getTimeClassifyStr(intervalStr: string) {
+    let defaultStr = 'time_classify_minute(' + this.timeField + ',1)';
+    if (intervalStr === undefined || intervalStr.length <= 0) {
+      return defaultStr;
+    }
+
+    let ret = 'time_classify_';
+    let value = intervalStr.replace(/[^0-9]/g, '');
+    let unit = intervalStr.slice(-1);
+    switch (unit) {
+      case 's':
+        ret += 'second';
+        break;
+      case 'm':
+        ret += 'minute';
+        break;
+      case 'h':
+        ret += 'hour';
+        break;
+      case 'd':
+        ret += 'day';
+        break;
+      case 'w':
+        ret += 'week';
+        break;
+      case 'M':
+        ret += 'month';
+        break;
+      case 'Y':
+        ret += 'year';
+        break;
+      default:
+        return defaultStr;
+    }
+    ret += '(' + this.timeField + ',' + value + ')';
+    return ret;
+  }
+
   private getDrilldownStrs(_index: number): string {
     let index = _index < 0 || _index >= this.aggs.length ? 0 : _index;
     let metrics = this.splitCsv(this.aggs[index].aggKeyStr);
-    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggString);
-    let aggCol = queryDefs.getAggTypesColumnStr(this.aggs[index].aggString);
+    let aggQuery = queryDefs.getAggTypesQueryStr(this.aggs[index].aggType);
+    let aggCol = queryDefs.getAggTypesColumnStr(this.aggs[index].aggType);
     let ddStrs = '';
     // aggregate parameters
     ddStrs += this.getDrilldownsStr(index, true, 'keys', this.aggs[index].aggKeyStr);
