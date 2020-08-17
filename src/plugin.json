@@ -1,11 +1,11 @@
 {
   "type": "datasource",
   "name": "Groonga",
-  "id": "grafana-datasource-groonga",
+  "id": "groonga-datasource",
   "logs": true,
   "metrics": true,
   "info": {
-    "description": "Groonga datasource for Grafana",
+    "description": "Groonga datasource",
     "author": {
       "name": "Amiya",
       "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
