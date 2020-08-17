@@ -46,5 +46,5 @@ jobs:
           ./node_modules/.bin/grafana-toolkit plugin:ci-package
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.runs-on }}-${{ matrix.node-version }}
+          name: ${{ matrix.runs-on }}-nodejs-${{ matrix.node-version }}
           path: ci
