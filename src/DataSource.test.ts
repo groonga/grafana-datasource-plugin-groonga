@@ -6,7 +6,7 @@ import { testDatasourceResponse } from './testdata/testDatasource_response';
 import { queryTableResponse } from './testdata/query_table_response';
 import { queryGraphResponse } from 'testdata/query_graph_response';
 
-// for test parameter
+// for test parameter : change your environment.
 const test_id = 41;
 const test_timeField = 'eventtime';
 
