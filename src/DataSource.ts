@@ -43,18 +43,15 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
   index: string;
   timeField: string;
 
-  constructor(instanceSettings: DataSourceInstanceSettings<GroongaOptions>, private backendSrv: any) {
+  constructor(instanceSettings: DataSourceInstanceSettings<GroongaOptions>) {
     super(instanceSettings);
     //this.basicAuth = instanceSettings.basicAuth === undefined ? '' : instanceSettings.basicAuth;
     this.withCredentials = instanceSettings.withCredentials !== undefined;
-    //this.url = instanceSettings.jsonData.path === undefined ? '' : instanceSettings.jsonData.path;
     this.url = instanceSettings.url === undefined ? '' : instanceSettings.url;
     this.name = instanceSettings.name;
     this.index = instanceSettings.database === undefined ? '' : instanceSettings.database;
     const settingsData = instanceSettings.jsonData || ({} as GroongaOptions);
     this.timeField = settingsData.timeField === undefined ? '' : settingsData.timeField;
-
-    this.backendSrv = backendSrv;
 
     this.headers = { 'Content-Type': 'application/json' };
     if (typeof instanceSettings.basicAuth === 'string' && instanceSettings.basicAuth.length > 0) {
@@ -64,7 +61,6 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
 
   // query API
   async query(options: DataQueryRequest<GroongaQuery>): Promise<DataQueryResponse> {
-    //let target = options.targets[0];
     let selectParams = new SelectParameters(
       this.timeField,
       options.targets,
@@ -78,9 +74,6 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
       .datasourceRequest({ url: this.url + '/d/select?' + serializedOptionStr })
       .then(result => {
         let selects = selectParams.isAggregate(0) ? result.data[1][1] : result.data[1][0];
-        //var select = selectParams.isAggregate() ? result.data[1][1][selectParams.refId] : result.data[1][0];
-        //var dataNum = select[0];
-        //var schema = select[1];
 
         if (queryDef.isGraphAggregateType(selectParams.aggs[0].aggType)) {
           return this.createGraphResponse(selects, selectParams);
@@ -111,7 +104,7 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
   private doRequest(options: any) {
     options.withCredentials = this.withCredentials;
     options.headers = this.headers;
-    return this.backendSrv.datasourceRequest(options);
+    return getBackendSrv().datasourceRequest(options);
   }
 
   private getTypeStr(_type: string): string {
@@ -280,10 +273,6 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
     let data = [{ target: '', datapoints: [{}] }];
     data.shift();
     _selectParams.aggs.forEach((agg: any, index: number) => {
-      //var select = selectParams.isAggregate() ? result.data[1][1][selectParams.refId] : result.data[1][0];
-      //var dataNum = select[0];
-      //var schema = select[1];
-
       let _select = _selects[agg.refId];
 
       //let mets = ['__dummy__'];
