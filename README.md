@@ -3,23 +3,13 @@
 View report data from Groonga in your Grafana.
 
 ## Getting started
-1. Install dependencies
-```BASH
-yarn install
+Use the new grafana-cli tool to install groonga-datasource from the commandline:
+
 ```
-2. Build plugin in development mode or run in watch mode
-```BASH
-yarn dev
-```
-or
-```BASH
-yarn watch
-```
-3. Build plugin in production mode
-```BASH
-yarn build
+grafana-cli plugins install groonga-datasource
 ```
 
+The plugin will be installed into your grafana plugins directory; the default is /var/lib/grafana/plugins if you installed the grafana package.
 
 ## Learn more
 - [Build a data source plugin tutorial](https://grafana.com/tutorials/build-a-data-source-plugin)
