@@ -1,5 +1,7 @@
 # Grafana Gronnga Data Source Plugin
 
+![CI](https://github.com/groonga/grafana-datasource-plugin-groonga/workflows/CI/badge.svg)
+
 View report data from Groonga in your Grafana.
 
 ## Getting started
