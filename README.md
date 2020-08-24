@@ -1,7 +1,5 @@
 # Grafana Gronnga Data Source Plugin
 
-[![CircleCI](https://circleci.com/gh/grafana/groonga-datasource/tree/master.svg?style=svg)](https://circleci.com/gh/grafana/simple-datasource/tree/master)
-
 View report data from Groonga in your Grafana.
 
 ## Getting started
