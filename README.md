@@ -16,3 +16,7 @@ The plugin will be installed into your grafana plugins directory; the default is
 - [Grafana documentation](https://grafana.com/docs/)
 - [Grafana Tutorials](https://grafana.com/tutorials/) - Grafana Tutorials are step-by-step guides that help you make the most of Grafana
 - [Grafana UI Library](https://developers.grafana.com/ui) - UI components to help you build interfaces using Grafana Design System
+
+## License
+
+Apache License 2.0, see [LICENSE](LICENSE).
