@@ -1,27 +1,17 @@
-# Grafana Data Source Plugin Template
+# Grafana Gronnga Data Source Plugin
 
-This template is a starting point for building Grafana Data Source Plugins
+[![CircleCI](https://circleci.com/gh/grafana/groonga-datasource/tree/master.svg?style=svg)](https://circleci.com/gh/grafana/groonga-datasource/tree/master)
 
-## What is Grafana Data Source Plugin?
-Grafana supports a wide range of data sources, including Prometheus, MySQL, and even Datadog. There’s a good chance you can already visualize metrics from the systems you have set up. In some cases, though, you already have an in-house metrics solution that you’d like to add to your Grafana dashboards. Grafana Data Source Plugins enables integrating such solutions with Grafana.
+View report data from Groonga in your Grafana.
 
 ## Getting started
-1. Install dependencies
-```BASH
-yarn install
+Use the new grafana-cli tool to install groonga-datasource from the commandline:
+
 ```
-2. Build plugin in development mode or run in watch mode
-```BASH
-yarn dev
+grafana-cli plugins install groonga-datasource
 ```
-or
-```BASH
-yarn watch
-```
-3. Build plugin in production mode
-```BASH
-yarn build
-```
+
+The plugin will be installed into your grafana plugins directory; the default is /var/lib/grafana/plugins if you installed the grafana package.
 
 ## Learn more
 - [Build a data source plugin tutorial](https://grafana.com/tutorials/build-a-data-source-plugin)
