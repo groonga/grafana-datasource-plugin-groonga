@@ -1,0 +1,44 @@
+{
+  "type": "datasource",
+  "name": "Groonga",
+  "id": "groonga-datasource",
+  "logs": true,
+  "metrics": true,
+  "info": {
+    "description": "Groonga datasource",
+    "author": {
+      "name": "Amiya",
+      "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
+    },
+    "keywords": [
+      "Groonga",
+      "datasource"
+    ],
+    "logos": {
+      "small": "img/groonga-icon.svg",
+      "large": "img/groonga-icon-full-size.svg"
+    },
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/groonga/grafana-datasource-plugin-groonga/blob/master/LICENSE"
+      }
+    ],
+    "screenshots": [],
+    "version": "1.0.1",
+    "updated": "2020-09-08",
+    "build": {
+      "time": 1599535695471,
+      "branch": "master",
+      "hash": "db69012a7f35a1d9faba300ea8912c723a04d44b"
+    }
+  },
+  "dependencies": {
+    "grafanaVersion": "7.0.x",
+    "plugins": []
+  }
+}
