@@ -56,7 +56,7 @@ curl \
 echo "[" > logs.json
 echo "[\"timestamp\", \"host\", \"traffic\", \"n_alerts\"]," >> logs.json
 now=$(date +%s)
-for timestamp in $(seq $[now - 3600] 1 $now) $(seq $now 1 $[now + 3600]); do
+for timestamp in $(seq $[now - 3600] 5 $now) $(seq $now 5 $[now + 3600]); do
   host="host-$[RANDOM % 10]"
   traffic=$[RANDOM % 1000000]
   if [ $[RANDOM % 2] -eq 0 ]; then
@@ -65,7 +65,7 @@ for timestamp in $(seq $[now - 3600] 1 $now) $(seq $now 1 $[now + 3600]); do
   n_alerts=$[RANDOM % 32]
   echo "[${timestamp}, \"${host}\", ${traffic}, ${n_alerts}]" >> logs.json
 done
-echo "[$[now + 3601], \"${host}\", ${traffic}, ${n_alerts}]" >> logs.json
+echo "[$[now + 3605], \"${host}\", ${traffic}, ${n_alerts}]" >> logs.json
 echo "]" >> logs.json
 
 curl \
