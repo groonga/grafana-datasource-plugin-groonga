@@ -18,8 +18,10 @@ services:
   grafana:
     image: grafana/grafana:7.1.5
     volumes:
-      - ./:/var/lib/grafana/plugins/groonga-datasource
+      - ./:${GF_GROONGA_DATASOURCE_DIR:-/var/lib/grafana/plugins/groonga-datasource}
       - grafana-storage:/var/lib/grafana
+    environment:
+      GF_INSTALL_PLUGINS: "${GF_INSTALL_PLUGINS:-}"
     ports:
       - "3000:3000"
     depends_on:
