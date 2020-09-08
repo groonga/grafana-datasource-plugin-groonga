@@ -1,4 +1,4 @@
-# Grafana Gronnga Data Source Plugin
+# Grafana Groonga Data Source Plugin
 
 ![CI](https://github.com/groonga/grafana-datasource-plugin-groonga/workflows/CI/badge.svg)
 
