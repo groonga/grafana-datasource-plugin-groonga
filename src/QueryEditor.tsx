@@ -74,6 +74,11 @@ export class QueryEditor extends PureComponent<Props> {
     this.query.table = value;
     this.setState({ value }, this.onRunQuery);
   };
+  onTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    this.query.timeField = value;
+    this.setState({ value }, this.onRunQuery);
+  };
 
   onQueryTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -122,7 +127,7 @@ export class QueryEditor extends PureComponent<Props> {
   render() {
     //const query = defaults(this.props.query, defaultQuery);
     const query = this.props.query;
-    const { table, queryText, filter, sortby, limit, aggregateKeyStr, aggregateTarget } = query;
+    const { table, timeField, queryText, filter, sortby, limit, aggregateKeyStr, aggregateTarget } = query;
 
     return (
       <>
@@ -137,6 +142,16 @@ export class QueryEditor extends PureComponent<Props> {
                 onChange={this.onTableChange}
                 label="Table Name"
                 tooltip={<>table name string</>}
+              />
+            </div>
+            <div className="gf-form">
+              <FormField
+                labelWidth={8}
+                inputWidth={16}
+                value={timeField || ''}
+                onChange={this.onTimeChange}
+                label="Time field"
+                tooltip={<>time field name string</>}
               />
             </div>
           </div>

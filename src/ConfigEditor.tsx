@@ -16,6 +16,14 @@ export class ConfigEditor extends PureComponent<Props, State> {
     };
     onOptionsChange({ ...options, jsonData });
   };
+  onTableFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { onOptionsChange, options } = this.props;
+    const jsonData = {
+      ...options.jsonData,
+      tableField: event.target.value,
+    };
+    onOptionsChange({ ...options, jsonData });
+  };
 
   render() {
     const { options, onOptionsChange } = this.props;
@@ -37,7 +45,17 @@ export class ConfigEditor extends PureComponent<Props, State> {
         <div className="gf-form-group">
           <div className="gf-form">
             <FormField
-              label="Time field name"
+              label="Default table name"
+              labelWidth={20}
+              inputWidth={20}
+              onChange={this.onTableFieldChange}
+              value={jsonData.tableField || ''}
+              placeholder=""
+            />
+          </div>
+          <div className="gf-form">
+            <FormField
+              label="Default time field name"
               labelWidth={20}
               inputWidth={20}
               onChange={this.onTimeFieldChange}

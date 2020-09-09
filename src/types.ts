@@ -5,6 +5,7 @@ export interface GroongaQuery extends DataQuery {
   queryText?: string;
   interval: string;
   table: string;
+  timeField: string;
   column: string;
   filter: string;
   sortby: string;
@@ -26,6 +27,7 @@ export interface GroongaAggregation {
  */
 export interface GroongaOptions extends DataSourceJsonData {
   //path?: string;
+  tableField?: string;
   timeField?: string;
 }
 /*

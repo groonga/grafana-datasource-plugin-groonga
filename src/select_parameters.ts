@@ -27,6 +27,7 @@ export class SelectParameters {
   aggs: AggregateParam[];
 
   constructor(
+    _tableField: string,
     _timeField: string,
     _groongaQuerys: GroongaQuery[],
     _timeRangeFrom: number,
@@ -35,8 +36,16 @@ export class SelectParameters {
   ) {
     this.rangeFrom = _timeRangeFrom;
     this.rangeTo = _timeRangeTo;
-    this.table = _groongaQuerys[0].table;
-    this.timeField = _timeField;
+    if (_groongaQuerys[0].table !== undefined && _groongaQuerys[0].table.length > 0) {
+      this.table = _groongaQuerys[0].table;
+    } else {
+      this.table = _tableField;
+    }
+    if (_groongaQuerys[0].timeField !== undefined && _groongaQuerys[0].timeField.length > 0) {
+      this.timeField = _groongaQuerys[0].timeField;
+    } else {
+      this.timeField = _timeField;
+    }
     this.query = _groongaQuerys[0].queryText === undefined ? '' : _groongaQuerys[0].queryText;
     this.filter = _groongaQuerys[0].filter;
     this.sortby = _groongaQuerys[0].sortby;

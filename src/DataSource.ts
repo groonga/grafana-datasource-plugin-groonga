@@ -41,6 +41,7 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
   url: string;
   name: string;
   index: string;
+  tableField: string;
   timeField: string;
 
   constructor(instanceSettings: DataSourceInstanceSettings<GroongaOptions>) {
@@ -51,6 +52,7 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
     this.name = instanceSettings.name;
     this.index = instanceSettings.database === undefined ? '' : instanceSettings.database;
     const settingsData = instanceSettings.jsonData || ({} as GroongaOptions);
+    this.tableField = settingsData.tableField === undefined ? '' : settingsData.tableField;
     this.timeField = settingsData.timeField === undefined ? '' : settingsData.timeField;
 
     this.headers = { 'Content-Type': 'application/json' };
@@ -62,6 +64,7 @@ export class DataSource extends DataSourceApi<GroongaQuery, GroongaOptions> {
   // query API
   async query(options: DataQueryRequest<GroongaQuery>): Promise<DataQueryResponse> {
     let selectParams = new SelectParameters(
+      this.tableField,
       this.timeField,
       options.targets,
       options.range.from.valueOf() / 1000,
