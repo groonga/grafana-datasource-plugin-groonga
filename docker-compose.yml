@@ -1,0 +1,28 @@
+version: "3.7"
+
+volumes:
+  grafana-storage:
+
+services:
+  groonga:
+    image: groonga/groonga
+    ports:
+      - "10041:10041"
+
+  groonga-prepare:
+    build:
+      context: dockerfiles/groonga-prepare
+    depends_on:
+      - groonga
+
+  grafana:
+    image: grafana/grafana:7.1.5
+    volumes:
+      - ./:${GF_GROONGA_DATASOURCE_DIR:-/var/lib/grafana/plugins/groonga-datasource}
+      - grafana-storage:/var/lib/grafana
+    environment:
+      GF_INSTALL_PLUGINS: "${GF_INSTALL_PLUGINS:-}"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - groonga-prepare
