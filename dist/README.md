@@ -1,14 +1,14 @@
-# Grafana Groonga Data Source Plugin
+# Grafana ALog Data Source Plugin
 
-![CI](https://github.com/groonga/grafana-datasource-plugin-groonga/workflows/CI/badge.svg)
+![CI](https://github.com/ALog/ALog-datasource/workflows/CI/badge.svg)
 
-View report data from Groonga in your Grafana.
+View report data from ALog in your Grafana.
 
 ## Install the Data Source
-Use the new grafana-cli tool to install groonga-datasource from the commandline:
+Use the new grafana-cli tool to install ALog-datasource from the commandline:
 
 ```bash
-grafana-cli plugins install groonga-datasource
+grafana-cli plugins install ALog-datasource
 ```
 
 The plugin will be installed into your grafana plugins directory; the default is /var/lib/grafana/plugins if you installed the grafana package.
@@ -39,10 +39,12 @@ You can find "Groonga" datasource at the bottom of
 http://localhost:3000/datasources/new . You can use the following
 parameters to use the test Groonga server that has some test data:
 
+  * Name: `Groonga`
   * HTTP
     * URL: `http://groonga:10041/`
   * Groonga Details
-    * Time field name: `timestamp`
+    * Default table name: `Logs`
+    * Default time field name: `timestamp`
 
 You can use the Groonga datasource in a panel with the following
 parameters:
@@ -50,6 +52,40 @@ parameters:
   * Table Name: `Logs`
 
 You can see visualized data in the test Groonga server.
+
+## Usage
+
+- `Table Name`(required): target table name.
+- `Output columns`: output columns by csv format. (ex: `timefield,value1,value2`)
+- `limit num`: number of output records. default value is `10`.
+- `Filter string`: filtering string according to [Groonga Script](https://groonga.org/ja/docs/reference/grn_expr/script_syntax.html).
+- `Sort columns`: sort key columns by csv format. (ex: `timefield,value1,-value2`)
+  - If you want to use descending order, add `-` at the beginning.)
+
+If you want to perform aggregation processing, specify the following.
+- `Key columns`: Aggregate key columns by csv format.
+- `Type`: data aggregation method(count/sum/max/min/avg).
+- `Target`: column to be aggregated.
+- `Interval`: Interval when aggregation is performed for each fixed period.
+
+> **Note:**
+> - If you want to aggregate every certain period in the graph panel, `Interval` is required.
+> - Aggregated time is stored in a column called AGGTIME and can be used in Key columns and Output columns.
+> - If you want to display aggregated values, specify a special column name in Output columns.
+> 
+> |Aggregation method|Special column name|
+> |---|---|
+> |count|_nsubrecs|
+> |sum|_sum|
+> |max|_max|
+> |min|_min|
+> |avg|_avg|
+
+## Learn more
+- [Build a data source plugin tutorial](https://grafana.com/tutorials/build-a-data-source-plugin)
+- [Grafana documentation](https://grafana.com/docs/)
+- [Grafana Tutorials](https://grafana.com/tutorials/) - Grafana Tutorials are step-by-step guides that help you make the most of Grafana
+- [Grafana UI Library](https://developers.grafana.com/ui) - UI components to help you build interfaces using Grafana Design System
 
 ## License
 

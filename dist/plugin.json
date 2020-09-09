@@ -29,13 +29,8 @@
       }
     ],
     "screenshots": [],
-    "version": "1.0.1",
-    "updated": "2020-09-08",
-    "build": {
-      "time": 1599535695471,
-      "branch": "master",
-      "hash": "db69012a7f35a1d9faba300ea8912c723a04d44b"
-    }
+    "version": "1.0.2",
+    "updated": "2020-09-09"
   },
   "dependencies": {
     "grafanaVersion": "7.0.x",
