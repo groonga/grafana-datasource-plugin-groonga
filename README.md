@@ -60,7 +60,7 @@ You can see visualized data in the test Groonga server.
 - `Time field`: the key time field for the table.
 - `Output columns`: output columns by csv format. (ex: `timefield,value1,value2`)
 - `limit num`: number of output records. default value is `10`.
-- `Filter string`: filtering string according to [Groonga Script](https://groonga.org/ja/docs/reference/grn_expr/script_syntax.html).
+- `Filter string`: filtering string according to [Groonga's script syntax](https://groonga.org/docs/reference/grn_expr/script_syntax.html).
 - `Sort columns`: sort key columns by csv format. (ex: `timefield,value1,-value2`)
   - If you want to use descending order, add `-` at the beginning.)
 
