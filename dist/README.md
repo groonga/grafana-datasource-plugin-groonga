@@ -7,7 +7,7 @@ View report data from Groonga in your Grafana.
 ## Install the Data Source
 Use the new grafana-cli tool to install groonga-datasource from the commandline:
 
-```
+```bash
 grafana-cli plugins install groonga-datasource
 ```
 
