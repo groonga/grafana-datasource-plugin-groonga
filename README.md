@@ -15,10 +15,10 @@ The plugin will be installed into your grafana plugins directory; the default is
 
 ## Configure the Data Source
 
-Accessed from the Grafana main menu, newly installed data sources can be added immediately within the [Data Sources] section.
-Next, click the [Add data source] button in the upper right. The data source will be available for selection in the Type select box.
+Accessed from the Grafana main menu, newly installed data sources can be added immediately within the `Data Sources` section.
+Next, click the `Add data source` button in the upper right. The data source will be available for selection in the Type select box.
 To see a list of installed data sources, click the Plugins item in the main menu. Both core data sources and installed data sources will appear.
-Select Groonga-datasource and enter the [Name], [URL], [Default table name], and [Default field name] in the displayed setting screen.
+Select Groonga-datasource and enter the `Name`, `URL`, `Default table name`, and `Default field name` in the displayed setting screen.
 
 ## How to try
 
