@@ -1,3 +1,5 @@
 ((sh-mode .  ((indent-tabs-mode . nil)
               (sh-indentation   . 2)
-              (sh-basic-offset  . 2))))
+              (sh-basic-offset  . 2)))
+ (js-mode .  ((indent-tabs-mode . nil)
+              (js-indent-level  . 2))))
