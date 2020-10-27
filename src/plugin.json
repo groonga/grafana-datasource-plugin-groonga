@@ -30,7 +30,16 @@
         "url": "https://github.com/groonga/grafana-datasource-plugin-groonga/blob/master/LICENSE"
       }
     ],
-    "screenshots": []
+    "screenshots": [
+      {
+        "name": "Datasource configuration",
+        "path": "img/screenshot-datasource-configuration.png"
+      },
+      {
+        "name": "Panel",
+        "path": "img/screenshot-panel.png"
+      }
+    ]
   },
   "name": "Groonga",
   "type": "datasource",
