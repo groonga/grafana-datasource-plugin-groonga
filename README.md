@@ -94,4 +94,4 @@ If you want to perform aggregation processing, specify the following.
 
 ## License
 
-Apache License 2.0, see [LICENSE](LICENSE).
+Apache License 2.0, see [LICENSE](https://github.com/groonga/grafana-datasource-plugin-groonga/blob/master/LICENSE).
