@@ -24,11 +24,11 @@ Select Groonga-datasource and enter the `Name`, `URL`, `Default table name`, and
 
 You can use [docker-compose](https://docs.docker.com/compose/) to try
 groonga-datasource. Here is a command line to try groonga-datasource
-1.0.0:
+1.0.2:
 
 ```bash
 GF_GROONGA_DATASOURCE_DIR=/tmp/groonga-datasource \
-  GF_INSTALL_PLUGINS="https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/1.0.0/groonga-datasource-1.0.0.zip;groonga-datasource" \
+  GF_INSTALL_PLUGINS="https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/1.0.2/groonga-datasource-1.0.2.zip;groonga-datasource" \
   docker-compose up
 ```
 
