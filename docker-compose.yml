@@ -26,3 +26,10 @@ services:
       - "3000:3000"
     depends_on:
       - groonga-prepare
+
+  dist:
+    image: node:12-buster
+    volumes:
+      - ./:/source
+    command:
+      - /source/dist.sh
