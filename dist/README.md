@@ -29,7 +29,7 @@ groonga-datasource. Here is a command line to try groonga-datasource
 ```bash
 GF_GROONGA_DATASOURCE_DIR=/tmp/groonga-datasource \
   GF_INSTALL_PLUGINS="https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/1.0.3/groonga-datasource-1.0.3.zip;groonga-datasource" \
-  docker-compose up
+  docker-compose up garafana
 ```
 
 You can find Grafana at http://localhost:3000/ .

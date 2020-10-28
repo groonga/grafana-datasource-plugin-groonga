@@ -14,7 +14,7 @@
       "large": "img/groonga-icon-full-size.svg"
     },
     "updated": "2020-10-28",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": {
       "name": "Amiya",
       "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
