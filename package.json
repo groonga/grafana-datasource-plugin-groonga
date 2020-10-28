@@ -7,6 +7,7 @@
     "test": "grafana-toolkit plugin:test",
     "dev": "grafana-toolkit plugin:dev",
     "watch": "grafana-toolkit plugin:dev --watch",
+    "dist": "docker-compose run --rm dist",
     "release": "version=$(jq -r '.version' package.json) && git tag ${version} -a -m \"Release ${version}!!!\" && git push --tags"
   },
   "author": "Amiya",
