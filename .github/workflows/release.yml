@@ -1,0 +1,50 @@
+name: Release
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create archive
+        id: create-archive
+        run: |
+          name=$(jq -r '.name' package.json)
+          version=$(jq -r '.version' package.json)
+          mv dist ${name}
+          archive=${name}-${version}.zip
+          archive_sha1=${archive}.sha1
+          zip -r ${archive} ${name}
+          sha1sum ${archive} > ${archive_sha1}
+          echo ::set-output name=zip-asset-path::${archive}
+          echo ::set-output name=zip-asset-name::${archive}
+          echo ::set-output name=zip-sha1-asset-path::${archive_sha1}
+          echo ::set-output name=zip-sha1-asset-name::${archive_sha1}
+        uses: actions/checkout@v2
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+      - uses: actions/upload-artifact@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ${{ steps.create-archive.outputs.zip-asset-path }}
+          asset_name: ${{ steps.create-archive.outputs.zip-asset-name }}
+          asset_content_type: application/zip
+      - uses: actions/upload-artifact@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ${{ steps.create-archive.outputs.sha1-asset-path }}
+          asset_name: ${{ steps.create-archive.outputs.sha1-asset-name }}
+          asset_content_type: text/plain
