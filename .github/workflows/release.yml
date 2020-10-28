@@ -23,7 +23,6 @@ jobs:
           echo ::set-output name=zip-asset-name::${archive}
           echo ::set-output name=zip-sha1-asset-path::${archive_sha1}
           echo ::set-output name=zip-sha1-asset-name::${archive_sha1}
-        uses: actions/checkout@v2
       - name: Create release
         id: create-release
         uses: actions/create-release@v1
