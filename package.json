@@ -6,7 +6,8 @@
     "build": "grafana-toolkit plugin:build",
     "test": "grafana-toolkit plugin:test",
     "dev": "grafana-toolkit plugin:dev",
-    "watch": "grafana-toolkit plugin:dev --watch"
+    "watch": "grafana-toolkit plugin:dev --watch",
+    "release": "version=$(jq -r '.version' package.json) && git tag ${version} -a -m \"Release ${version}!!!\" && git push --tags"
   },
   "author": "Amiya",
   "license": "Apache-2.0",
