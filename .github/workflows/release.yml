@@ -73,11 +73,11 @@ jobs:
             echo '    {'; \
             echo '      "version": "${{ env.GRAFANA_PLUGIN_VERSION }}",'; \
             echo '      "commit": "${{ github.sha }}",'; \
-            echo '      "url": "https://github.com/${{ github.repository }}",' \
+            echo '      "url": "https://github.com/${{ github.repository }}",'; \
             echo '      "download": {'; \
             echo '        "any": {'; \
             echo '          "url": "${{ steps.upload-plugin-asset.outputs.browser_download_url }}",'; \
-            echo '          "md5": "${{ env.GRAFANA_PLUGIN_CHECKSUM }}"; \
+            echo '          "md5": "${{ env.GRAFANA_PLUGIN_CHECKSUM }}"'; \
             echo '        }'; \
             echo '      }'; \
             echo '    }'; \
