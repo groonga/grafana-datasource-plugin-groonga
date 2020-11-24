@@ -74,7 +74,7 @@ If you want to perform aggregation processing, specify the following.
 > - If you want to aggregate every certain period in the graph panel, `Interval` is required.
 > - Aggregated time is stored in a column called AGGTIME and can be used in Key columns and Output columns.
 > - If you want to display aggregated values, specify a special column name in Output columns.
-> 
+>
 > |Aggregation method|Special column name|
 > |---|---|
 > |count|_nsubrecs|
