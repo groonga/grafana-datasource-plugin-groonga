@@ -16,7 +16,7 @@ services:
       - groonga
 
   grafana:
-    image: grafana/grafana:7.1.5
+    image: grafana/grafana:latest
     volumes:
       - ./:${GF_GROONGA_DATASOURCE_DIR:-/var/lib/grafana/plugins/groonga-datasource}
       - grafana-storage:/var/lib/grafana
