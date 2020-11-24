@@ -62,7 +62,6 @@ jobs:
           asset_content_type: text/plain
       - name: Publish to grafana.com
         run: |
-        run: |
           echo Publish your plugin to grafana.com/plugins by opening a PR to https://github.com/grafana/grafana-plugin-repository with the following entry:
           echo
           ( \
