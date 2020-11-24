@@ -16,7 +16,7 @@
     "@grafana/data": "^7.0.3",
     "@grafana/toolkit": "^7.0.3",
     "@grafana/ui": "^7.0.3",
-    "@testing-library/jest-dom": "5.4.0",
+    "@testing-library/jest-dom": "^5.4.0",
     "@testing-library/react": "^10.2.1",
     "@types/lodash": "^4.14.155"
   },

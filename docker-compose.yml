@@ -33,3 +33,10 @@ services:
       - ./:/source
     command:
       - /source/dist.sh
+
+  upgrade-lock:
+    image: node:12-buster
+    volumes:
+      - ./:/source
+    command:
+      - /source/upgrade-lock.sh
