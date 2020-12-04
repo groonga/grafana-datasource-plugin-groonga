@@ -184,7 +184,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={filter || ''}
                 onChange={this.onFilterTextChange}
                 label="Filter"
-                tooltip="Examples: action==_id &gt; 10000 && action='deny'"
+                tooltip="For example, action==_id &gt; 10000 && action='deny'"
               />
             </div>
           </div>
