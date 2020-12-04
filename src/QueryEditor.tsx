@@ -140,8 +140,7 @@ export class QueryEditor extends PureComponent<Props> {
                 inputWidth={16}
                 value={table || ''}
                 onChange={this.onTableChange}
-                label="Table Name"
-                tooltip={<>table name string</>}
+                label="Table name"
               />
             </div>
             <div className="gf-form">
@@ -151,7 +150,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={timeField || ''}
                 onChange={this.onTimeChange}
                 label="Time field"
-                tooltip={<>time field name string</>}
+                tooltip="Name of field to use for time"
               />
             </div>
           </div>
@@ -164,15 +163,15 @@ export class QueryEditor extends PureComponent<Props> {
                 value={queryText || ''}
                 onChange={this.onQueryTextChange}
                 label="Output columns"
-                tooltip={<>Output columns : comma separated string. </>}
+                tooltip="Comma-separated list of columns to return"
               />
               <FormField
                 labelWidth={8}
                 inputWidth={6}
                 value={limit || ''}
                 onChange={this.onLimitChange}
-                label="limit num"
-                tooltip={<>limit num</>}
+                label="Limit"
+                tooltip="Limit the number of rows in the query result"
               />
             </div>
           </div>
@@ -184,8 +183,8 @@ export class QueryEditor extends PureComponent<Props> {
                 inputWidth={16}
                 value={filter || ''}
                 onChange={this.onFilterTextChange}
-                label="Filter string"
-                tooltip={<>Filter string. ex : action==_id &gt; 10000 && action='deny'</>}
+                label="Filter"
+                tooltip="For example, action==_id &gt; 10000 && action='deny'"
               />
             </div>
           </div>
@@ -198,7 +197,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={sortby || ''}
                 onChange={this.onSortByTextChange}
                 label="Sort columns"
-                tooltip={<>Sort by columns. ex : _id,-app</>}
+                tooltip="Comma-separated list of columns to sort by, for example: _id,-app"
               />
             </div>
           </div>
@@ -211,7 +210,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={aggregateKeyStr || ''}
                 onChange={this.onAggregateKeyStrChange}
                 label="Key columns"
-                tooltip={<>Aggregate key columns string. ex : eventtime,action</>}
+                tooltip="Columns used to aggregate results, for example: eventtime,action"
               />
               <FormField
                 labelWidth={4}
@@ -235,7 +234,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={aggregateTarget || ''}
                 onChange={this.onAggregateTargetTextChange}
                 label="Target"
-                tooltip={<>Aggregate target column. ex : _id</>}
+                tooltip="Column to use as an aggregation target"
               />
               <FormField
                 labelWidth={4}
