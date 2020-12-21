@@ -69,59 +69,64 @@ export class QueryEditor extends PureComponent<Props> {
     this.props.onChange(query);
     this.props.onRunQuery();
   };
+  onChangeQuery = () => {
+    const { query } = this;
+    this.props.onChange(query);
+    //this.props.onRunQuery();
+  };
   onTableChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.table = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.timeField = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
 
   onQueryTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.queryText = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onFilterTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.filter = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onSortByTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.sortby = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onLimitChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     this.query.limit = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
 
   onAggregateKeyStrChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.aggregateKeyStr = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onAggregateOptionChange = (option: SelectableValue<string>) => {
     const { query } = this;
     const value = option.value ? option.value : '';
     query.aggregateType = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onAggregateTargetTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     this.query.aggregateTarget = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
   onAggregateIntervalChange = (option: SelectableValue<string>) => {
     const { query } = this;
     const value = option.value ? option.value : '';
     query.aggregateInterval = value;
-    this.setState({ value }, this.onRunQuery);
+    this.setState({ value }, this.onChangeQuery);
   };
 
   render() {
@@ -132,6 +137,11 @@ export class QueryEditor extends PureComponent<Props> {
     return (
       <>
         <div className="gf-form-group">
+          <div className="gf-form">
+            <button className="btn btn-primary width-8" onClick={this.onRunQuery}>
+              Query
+            </button>
+          </div>
           <div className="gf-form-inline">
             <label className="gf-form-label query-keyword width-7">FROM</label>
             <div className="gf-form">
@@ -140,8 +150,7 @@ export class QueryEditor extends PureComponent<Props> {
                 inputWidth={16}
                 value={table || ''}
                 onChange={this.onTableChange}
-                label="Table Name"
-                tooltip={<>table name string</>}
+                label="Table name"
               />
             </div>
             <div className="gf-form">
@@ -151,7 +160,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={timeField || ''}
                 onChange={this.onTimeChange}
                 label="Time field"
-                tooltip={<>time field name string</>}
+                tooltip="Name of field to use for time"
               />
             </div>
           </div>
@@ -164,15 +173,15 @@ export class QueryEditor extends PureComponent<Props> {
                 value={queryText || ''}
                 onChange={this.onQueryTextChange}
                 label="Output columns"
-                tooltip={<>Output columns : comma separated string. </>}
+                tooltip="Comma-separated list of columns to return"
               />
               <FormField
                 labelWidth={8}
                 inputWidth={6}
                 value={limit || ''}
                 onChange={this.onLimitChange}
-                label="limit num"
-                tooltip={<>limit num</>}
+                label="Limit"
+                tooltip="Limit the number of rows in the query result"
               />
             </div>
           </div>
@@ -184,8 +193,8 @@ export class QueryEditor extends PureComponent<Props> {
                 inputWidth={16}
                 value={filter || ''}
                 onChange={this.onFilterTextChange}
-                label="Filter string"
-                tooltip={<>Filter string. ex : action==_id &gt; 10000 && action='deny'</>}
+                label="Filter"
+                tooltip="For example, action==_id &gt; 10000 && action='deny'"
               />
             </div>
           </div>
@@ -198,7 +207,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={sortby || ''}
                 onChange={this.onSortByTextChange}
                 label="Sort columns"
-                tooltip={<>Sort by columns. ex : _id,-app</>}
+                tooltip="Comma-separated list of columns to sort by, for example: _id,-app"
               />
             </div>
           </div>
@@ -211,7 +220,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={aggregateKeyStr || ''}
                 onChange={this.onAggregateKeyStrChange}
                 label="Key columns"
-                tooltip={<>Aggregate key columns string. ex : eventtime,action</>}
+                tooltip="Columns used to aggregate results, for example: eventtime,action"
               />
               <FormField
                 labelWidth={4}
@@ -235,7 +244,7 @@ export class QueryEditor extends PureComponent<Props> {
                 value={aggregateTarget || ''}
                 onChange={this.onAggregateTargetTextChange}
                 label="Target"
-                tooltip={<>Aggregate target column. ex : _id</>}
+                tooltip="Column to use as an aggregation target"
               />
               <FormField
                 labelWidth={4}
