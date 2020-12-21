@@ -1,20 +1,22 @@
 {
   "name": "groonga-datasource",
-  "version": "1.0.2",
+  "version": "1.1.4",
   "description": "Groonga datasource for Grafana",
   "scripts": {
     "build": "grafana-toolkit plugin:build",
     "test": "grafana-toolkit plugin:test",
     "dev": "grafana-toolkit plugin:dev",
-    "watch": "grafana-toolkit plugin:dev --watch"
+    "watch": "grafana-toolkit plugin:dev --watch",
+    "dist": "docker-compose run --rm dist",
+    "release": "version=$(jq -r '.version' package.json) && git tag ${version} -a -m \"Release ${version}!!!\" && git push --tags"
   },
   "author": "Amiya",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@grafana/data": "7.0.1",
-    "@grafana/toolkit": "7.0.1",
-    "@grafana/ui": "7.0.1",
-    "@testing-library/jest-dom": "5.4.0",
+    "@grafana/data": "^7.0.3",
+    "@grafana/toolkit": "^7.0.3",
+    "@grafana/ui": "^7.0.3",
+    "@testing-library/jest-dom": "^5.4.0",
     "@testing-library/react": "^10.2.1",
     "@types/lodash": "^4.14.155"
   },

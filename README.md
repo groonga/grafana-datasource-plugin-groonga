@@ -1,4 +1,4 @@
-# Grafana Gronnga Data Source Plugin
+# Grafana Groonga Data Source Plugin
 
 ![CI](https://github.com/groonga/grafana-datasource-plugin-groonga/workflows/CI/badge.svg)
 
@@ -7,7 +7,7 @@ View report data from Groonga in your Grafana.
 ## Install the Data Source
 Use the new grafana-cli tool to install groonga-datasource from the commandline:
 
-```
+```bash
 grafana-cli plugins install groonga-datasource
 ```
 
@@ -24,12 +24,12 @@ Select Groonga-datasource and enter the `Name`, `URL`, `Default table name`, and
 
 You can use [docker-compose](https://docs.docker.com/compose/) to try
 groonga-datasource. Here is a command line to try groonga-datasource
-1.0.0:
+1.0.4:
 
 ```bash
 GF_GROONGA_DATASOURCE_DIR=/tmp/groonga-datasource \
-  GF_INSTALL_PLUGINS="https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/1.0.0/groonga-datasource-1.0.0.zip;groonga-datasource" \
-  docker-compose up
+  GF_INSTALL_PLUGINS="https://github.com/groonga/grafana-datasource-plugin-groonga/releases/download/1.0.4/groonga-datasource-1.0.4.zip;groonga-datasource" \
+  docker-compose up garafana
 ```
 
 You can find Grafana at http://localhost:3000/ .
@@ -60,7 +60,7 @@ You can see visualized data in the test Groonga server.
 - `Time field`: the key time field for the table.
 - `Output columns`: output columns by csv format. (ex: `timefield,value1,value2`)
 - `limit num`: number of output records. default value is `10`.
-- `Filter string`: filtering string according to [Groonga Script](https://groonga.org/ja/docs/reference/grn_expr/script_syntax.html).
+- `Filter string`: filtering string according to [Groonga's script syntax](https://groonga.org/docs/reference/grn_expr/script_syntax.html).
 - `Sort columns`: sort key columns by csv format. (ex: `timefield,value1,-value2`)
   - If you want to use descending order, add `-` at the beginning.)
 
@@ -74,7 +74,7 @@ If you want to perform aggregation processing, specify the following.
 > - If you want to aggregate every certain period in the graph panel, `Interval` is required.
 > - Aggregated time is stored in a column called AGGTIME and can be used in Key columns and Output columns.
 > - If you want to display aggregated values, specify a special column name in Output columns.
-> 
+>
 > |Aggregation method|Special column name|
 > |---|---|
 > |count|_nsubrecs|
@@ -94,4 +94,4 @@ If you want to perform aggregation processing, specify the following.
 
 ## License
 
-Apache License 2.0, see [LICENSE](LICENSE).
+Apache License 2.0, see [LICENSE](https://github.com/groonga/grafana-datasource-plugin-groonga/blob/master/LICENSE).

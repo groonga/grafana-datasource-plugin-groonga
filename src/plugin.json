@@ -1,15 +1,10 @@
 {
-  "type": "datasource",
-  "name": "Groonga",
+  "dependencies": {
+    "grafanaDependency": "7.x.x",
+    "plugins": []
+  },
   "id": "groonga-datasource",
-  "logs": true,
-  "metrics": true,
   "info": {
-    "description": "Groonga datasource",
-    "author": {
-      "name": "Amiya",
-      "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
-    },
     "keywords": [
       "Groonga",
       "datasource"
@@ -18,6 +13,13 @@
       "small": "img/groonga-icon.svg",
       "large": "img/groonga-icon-full-size.svg"
     },
+    "updated": "%TODAY%",
+    "version": "%VERSION%",
+    "author": {
+      "name": "Amiya",
+      "url": "https://github.com/groonga/grafana-datasource-plugin-groonga"
+    },
+    "description": "Groonga datasource",
     "links": [
       {
         "name": "Website",
@@ -28,12 +30,19 @@
         "url": "https://github.com/groonga/grafana-datasource-plugin-groonga/blob/master/LICENSE"
       }
     ],
-    "screenshots": [],
-    "version": "%VERSION%",
-    "updated": "%TODAY%"
+    "screenshots": [
+      {
+        "name": "Datasource configuration",
+        "path": "img/screenshot-datasource-configuration.png"
+      },
+      {
+        "name": "Panel",
+        "path": "img/screenshot-panel.png"
+      }
+    ]
   },
-  "dependencies": {
-    "grafanaVersion": "7.0.x",
-    "plugins": []
-  }
+  "name": "Groonga",
+  "type": "datasource",
+  "logs": true,
+  "metrics": true
 }

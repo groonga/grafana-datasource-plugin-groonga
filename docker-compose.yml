@@ -16,7 +16,7 @@ services:
       - groonga
 
   grafana:
-    image: grafana/grafana:7.1.5
+    image: grafana/grafana:latest
     volumes:
       - ./:${GF_GROONGA_DATASOURCE_DIR:-/var/lib/grafana/plugins/groonga-datasource}
       - grafana-storage:/var/lib/grafana
@@ -26,3 +26,17 @@ services:
       - "3000:3000"
     depends_on:
       - groonga-prepare
+
+  dist:
+    image: node:12-buster
+    volumes:
+      - ./:/source
+    command:
+      - /source/dist.sh
+
+  upgrade-lock:
+    image: node:12-buster
+    volumes:
+      - ./:/source
+    command:
+      - /source/upgrade-lock.sh
