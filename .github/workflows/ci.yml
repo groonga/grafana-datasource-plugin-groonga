@@ -13,7 +13,7 @@ jobs:
           - macos-latest
           - windows-latest
         node-version:
-          - 12
+          - 20
     runs-on: ${{ matrix.runs-on }}
     steps:
       - uses: actions/checkout@v4
